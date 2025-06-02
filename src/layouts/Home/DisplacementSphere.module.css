@@ -1,0 +1,39 @@
+.canvas {
+  position: absolute;
+  width: 100vw;
+  inset: 0;
+  opacity: 0;
+  transition-property: opacity, filter;
+  transition-duration: 3s;
+  transition-timing-function: var(--bezierFastoutSlowin);
+  filter: blur(0px) brightness(1) contrast(1.1);
+
+  &[data-visible='true'] {
+    opacity: 1;
+    filter: blur(0px) brightness(1.1) contrast(1.2);
+  }
+
+  @media (--mediaReduceMotion) {
+    filter: blur(1px) brightness(0.8) contrast(1);
+  }
+
+  /* Add subtle glow effect */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 60% 40%,
+      rgba(143, 251, 232, 0.1) 0%,
+      rgba(143, 251, 232, 0.05) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 3s var(--bezierFastoutSlowin);
+  }
+
+  &[data-visible='true']::after {
+    opacity: 1;
+  }
+}
