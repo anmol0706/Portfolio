@@ -2,6 +2,11 @@ module.exports = {
   reactStrictMode: true,
   trailingSlash: true,
   pageExtensions: ['page.js', 'api.js'],
+  output: 'export',
+  distDir: 'build',
+  images: {
+    unoptimized: true,
+  },
   webpack(config, { isServer }) {
     // Run custom scripts
     if (isServer) {
